@@ -20,6 +20,9 @@ func _physics_process(delta):
 	var dash = Input.is_action_just_pressed("dash")
 	var shoot = Input.is_action_just_pressed("shoot")
 	
+	if get_slide_collision_count() > 0:
+		get_tree().change_scene_to_file("res://gameOver.tscn")
+	
 	if shoot:
 		shooter()
 	
@@ -38,3 +41,5 @@ func _physics_process(delta):
 
 func _on_dash_cooldown_timeout():
 	canDash = true # Replace with function body.
+	
+

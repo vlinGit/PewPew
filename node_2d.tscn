@@ -1,10 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://b3one5om2pk7d"]
 
 [ext_resource type="Script" path="res://node_2d.gd" id="1_eymbg"]
-[ext_resource type="PackedScene" uid="uid://dnk7wquv5cf1e" path="res://character_body_2d.tscn" id="1_nunno"]
+[ext_resource type="PackedScene" uid="uid://dnk7wquv5cf1e" path="res://player.tscn" id="1_nunno"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_eymbg")
+metadata/_edit_horizontal_guides_ = [649.0]
+metadata/_edit_vertical_guides_ = [1151.0, -1137.0]
 
 [node name="Player" parent="." instance=ExtResource("1_nunno")]
 position = Vector2(575, 326)
