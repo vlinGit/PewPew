@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3one5om2pk7d"]
+
+[ext_resource type="Script" path="res://node_2d.gd" id="1_eymbg"]
+[ext_resource type="PackedScene" uid="uid://dnk7wquv5cf1e" path="res://character_body_2d.tscn" id="1_nunno"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_eymbg")
+
+[node name="Player" parent="." instance=ExtResource("1_nunno")]
+position = Vector2(575, 326)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(575, 325)
+
+[node name="spawnDelay" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="spawnDelay" to="." method="_on_spawn_delay_timeout"]

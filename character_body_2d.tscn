@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dnk7wquv5cf1e"]
+
+[ext_resource type="Script" path="res://playerMovement.gd" id="1_rglis"]
+[ext_resource type="PackedScene" uid="uid://c0ntivrum68u2" path="res://bullet.tscn" id="2_vxqno"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iw8b2"]
+radius = 20.025
+
+[sub_resource type="SphereMesh" id="SphereMesh_qt5nt"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_dv86w"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_rglis")
+bullet = ExtResource("2_vxqno")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(19.675, 0)
+rotation = 6.28927
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_iw8b2")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0.776471, 0.776471, 0.776471, 1)
+position = Vector2(4.76837e-07, 6.64592e-06)
+scale = Vector2(40.0454, 40)
+mesh = SubResource("SphereMesh_qt5nt")
+
+[node name="Arrow" type="MeshInstance2D" parent="."]
+position = Vector2(27, -1.19209e-07)
+rotation = -1.5649
+scale = Vector2(8.425, 8.425)
+mesh = SubResource("PrismMesh_dv86w")
+
+[node name="dashCooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="dashCooldown" to="." method="_on_dash_cooldown_timeout"]

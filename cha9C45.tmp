@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 uid="uid://dnk7wquv5cf1e"]
+
+[ext_resource type="Script" path="res://playerMovement.gd" id="1_rglis"]
+
+[sub_resource type="GDScript" id="GDScript_r562k"]
+script/source = "extends Bullet
+
+var speed = 750.0
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	position += transform.x * speed * delta
+
+func _on_Bullet_body_entered(body):
+	if body.is_in_group(\"mobs\"):
+		body.queue_free()
+	queue_free()
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lbebg"]
+radius = 2.0
+height = 10.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_7kiqi"]
+
+[sub_resource type="PackedScene" id="PackedScene_csd3u"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Bullet", "script", "Area2D", "CollisionShape2D2", "position", "rotation", "shape", "CollisionShape2D", "MeshInstance2D2", "scale", "mesh", "MeshInstance2D"),
+"node_count": 3,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 7, 3, -1, 3, 4, 1, 5, 2, 6, 3, 0, 0, 0, 11, 8, -1, 4, 4, 4, 5, 2, 9, 5, 10, 6, 0),
+"variants": [SubResource("GDScript_r562k"), Vector2(-1.19209e-07, 9.53674e-07), -1.58451, SubResource("CapsuleShape2D_lbebg"), Vector2(7.10543e-15, 0), Vector2(4.00454, 10), SubResource("SphereMesh_7kiqi")],
+"version": 3
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iw8b2"]
+radius = 20.025
+
+[sub_resource type="SphereMesh" id="SphereMesh_qt5nt"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_dv86w"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_rglis")
+bullet = SubResource("PackedScene_csd3u")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(19.675, 0)
+rotation = 3.16254
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_iw8b2")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0.776471, 0.776471, 0.776471, 1)
+position = Vector2(4.76837e-07, 6.64592e-06)
+scale = Vector2(40.0454, 40)
+mesh = SubResource("SphereMesh_qt5nt")
+
+[node name="Arrow" type="MeshInstance2D" parent="."]
+position = Vector2(27, -1.19209e-07)
+rotation = -1.5649
+scale = Vector2(8.425, 8.425)
+mesh = SubResource("PrismMesh_dv86w")
+script = SubResource("GDScript_r562k")
+
+[node name="dashCooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="dashCooldown" to="." method="_on_dash_cooldown_timeout"]

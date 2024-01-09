@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnk7wquv5cf1e"]
+
+[ext_resource type="Script" path="res://playerMovement.gd" id="1_rglis"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iw8b2"]
+radius = 20.025
+
+[sub_resource type="SphereMesh" id="SphereMesh_qt5nt"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_rglis")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_iw8b2")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0.776471, 0.776471, 0.776471, 1)
+position = Vector2(4.76837e-07, 6.64592e-06)
+scale = Vector2(40.0454, 40)
+mesh = SubResource("SphereMesh_qt5nt")
