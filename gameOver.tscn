@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bck804577nrr0"]
+[gd_scene load_steps=5 format=3 uid="uid://bck804577nrr0"]
 
 [ext_resource type="Script" path="res://RestartButton.gd" id="1_6lndc"]
+[ext_resource type="Script" path="res://gameOverScreen.gd" id="1_71m8d"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_taiu6"]
 
@@ -8,6 +9,7 @@
 
 [node name="CanvasLayer" type="CanvasLayer"]
 process_mode = 1
+script = ExtResource("1_71m8d")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 modulate = Color(0.0431373, 0.0392157, 0.0470588, 0.690196)
@@ -15,7 +17,7 @@ position = Vector2(597, 335.5)
 scale = Vector2(1196, 675)
 mesh = SubResource("QuadMesh_taiu6")
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="gameover" type="TextEdit" parent="."]
 offset_left = 115.0
 offset_top = 27.5
 offset_right = 1052.0
@@ -24,12 +26,38 @@ theme_override_colors/background_color = Color(0.121569, 0.117647, 0.12549, 1)
 theme_override_colors/font_color = Color(1, 0.517647, 0.45098, 1)
 theme_override_font_sizes/font_size = 166
 text = "Game Over"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="score" type="TextEdit" parent="."]
+offset_left = 474.0
+offset_top = 312.0
+offset_right = 788.0
+offset_bottom = 428.0
+theme_override_colors/background_color = Color(0.121569, 0.117647, 0.12549, 1)
+theme_override_font_sizes/font_size = 66
+placeholder_text = "Score"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+wrap_mode = 1
 
 [node name="RestartButton" type="Button" parent="."]
-offset_left = 474.0
-offset_top = 376.5
-offset_right = 695.0
-offset_bottom = 468.5
+offset_left = 480.0
+offset_top = 465.0
+offset_right = 701.0
+offset_bottom = 557.0
 theme_override_font_sizes/font_size = 61
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tsypt")
 text = "Restart"

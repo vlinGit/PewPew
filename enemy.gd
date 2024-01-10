@@ -5,10 +5,10 @@ extends CharacterBody2D
 @export var accel = 0.2
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
-	var curPos = get_canvas_transform().origin + global_position
+func _physics_process(_delta):
 	velocity = velocity.lerp((player.position - global_position).normalized() * speed, accel)
-
-	move_and_slide()
+	
+	if !global.gameOver:
+		move_and_slide()
 
 

@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3one5om2pk7d"]
+
+[ext_resource type="Script" path="res://mainScene.gd" id="1_bvjdx"]
+[ext_resource type="PackedScene" uid="uid://dnk7wquv5cf1e" path="res://player.tscn" id="2_p6csu"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nqfe5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dhbnw"]
+size = Vector2(698, 16.625)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k6aib"]
+size = Vector2(1171.5, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dp1b5"]
+size = Vector2(686.5, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5hkfx"]
+size = Vector2(1188, 17)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_bvjdx")
+metadata/_edit_horizontal_guides_ = [649.0]
+metadata/_edit_vertical_guides_ = [1151.0, -1137.0]
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(521.828, 359.428)
+rotation = -1.74566
+scale = Vector2(940.349, 1476.88)
+texture = SubResource("PlaceholderTexture2D_nqfe5")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(575, 325)
+
+[node name="spawnDelay" type="Timer" parent="."]
+autostart = true
+
+[node name="Player" parent="." instance=ExtResource("2_p6csu")]
+top_level = true
+position = Vector2(575, 326)
+
+[node name="wallL" type="StaticBody2D" parent="."]
+position = Vector2(-5.5, 320)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wallL"]
+position = Vector2(-3.81249, -4)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_dhbnw")
+one_way_collision = true
+
+[node name="wallU" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wallU"]
+position = Vector2(577.75, -11)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_k6aib")
+one_way_collision = true
+
+[node name="wallR" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wallR"]
+position = Vector2(1163, 313.75)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_dp1b5")
+one_way_collision = true
+
+[node name="wallD" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wallD"]
+position = Vector2(578, 658)
+shape = SubResource("RectangleShape2D_5hkfx")
+one_way_collision = true
+
+[connection signal="timeout" from="spawnDelay" to="." method="_on_spawn_delay_timeout"]
